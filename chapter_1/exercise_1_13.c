@@ -14,10 +14,10 @@
  */
 
 int main(){
-	int c;
-	int temp;
-	while((c=getchar())!=EOF){
-		if(c=='\t' || c==' ' || c=='\n'){
+	int iCharacter; /* Input Character */
+	int iTemp; /* temporary vaiable */
+	while((iCharacter=getchar())!=EOF){
+		if(iCharacter=='\t' || iCharacter==' ' || iCharacter=='\n'){
 			putchar('\n');
 			
 		}

@@ -13,13 +13,25 @@
  * main: convert corresponding Celsius to given Fahrenheit table reverse order.
  */
 
-int main(){
-	printf("Program to convert Celsius to given Fahrenheit in reverse order.\n");
-	printf("Fahrenheit\tCelsius\n");
-	int fahr;
-	for(fahr=300;fahr>=0;fahr = fahr-20){
-	float celsius = (5.0/9.0) * (fahr-32.0);
-	printf("%3d\t\t%3.4f\n",fahr,(5.0/9.0) * (fahr-32.0));
-	}
+#include <stdio.h>
+
+int main() {
+    
+    printf("Program to convert Celsius to given Fahrenheit in reverse order.\n");
+    printf("Fahrenheit\tCelsius\n");
+    
+    int ffahr;  /* Declare variable to hold Fahrenheit values */
+    
+  
+    for(ffahr = 300; ffahr >= 0; ffahr = ffahr - 20) {
+        
+        float fcelsius = (5.0 / 9.0) * (ffahr - 32.0); /*Calculate Celsius equivalent for current Fahrenheit value*/
+        
+        printf("%3d\t\t%3.4f\n", ffahr, fcelsius);
+    }
+    
+    return 0;  // Exit program
+}
+
 	
 }/* End main()*/

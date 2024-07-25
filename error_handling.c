@@ -18,6 +18,9 @@ void handle_error(int error_code) {
 	case ZERO_DEVISION_ERROR:
 	    printf("Error %d: Zero devision error\n",ZERO_DEVISION_ERROR);
 	    break;
+	case INVALID_CHARACTER_DETECTED:
+	    printf("Error %d: Invalid Character Detected\n",INVALID_CHARACTER_DETECTED);
+	    break;
         default:
             printf("Error: Unknown error.\n");
             break;

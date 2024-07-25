@@ -16,14 +16,14 @@
 int main(){
 	printf("Program to convert Fahrenheit to given Celsius\n");
 	printf("Celsius\tFahrenheit\n");
-	float lower = 0; /*Lower limit of temperature scale */ 
-	float upper = 300; /*Upper limit of temperature scale */
-	float step = 20; /* Step size */
+	float flower = 0; /*Lower limit of temperature scale */ 
+	float fupper = 300; /*Upper limit of temperature scale */
+	float fstep = 20; /* Step size */
 
-	float celsius = lower; 
-	while (celsius <= upper){
-	float fahr = ((9.0/5.0) * celsius) + 32.0;
-	printf("%3.0f\t\t%6.1f\n",celsius,fahr);
-	celsius = celsius + step;
+	float fcelsius = flower; 
+	while (fcelsius <= fupper){
+	float ffahr = ((9.0/5.0) * fcelsius) + 32.0;
+	printf("%3.0f\t\t%6.1f\n",fcelsius,ffahr);
+	fcelsius = fcelsius + fstep;
 	}
 }/* End main()*/

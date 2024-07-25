@@ -7,6 +7,7 @@
 #define ERROR_OUT_OF_RANGE 2
 #define ERROR_STEP_TOO_LARGE 3
 #define ZERO_DEVISION_ERROR 4
+#define INVALID_CHARACTER_DETECTED 5
 
 // Function prototypes
 void handle_error(int error_code);

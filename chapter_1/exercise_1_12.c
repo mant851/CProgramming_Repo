@@ -7,23 +7,23 @@
 
 /** REQUIRED HEADER FILES */
 #include<stdio.h>
+#include "../error_handling.h" 
 
 /** MAIN PROGRAM */
 /*
- * main: funtion to print the one word per line.
+ * main: Funtion to print the one word per line.
  */
 
 int main(){
-	int c;
-	while((c=getchar())!=EOF){
-		if(c=='\t' || c=='\n' || c=='\t' || c==' '){
-			putchar('\n');
-		}
-
-		else{
-		    putchar(c);
+	int iCharacter; /* Input character */
+	while((iCharacter=getchar())!=EOF){
+		if(iCharacter=='\t' || iCharacter=='\n' || iCharacter==' '){
+			putchar('\n'); /* Output a newline to separate words */ 
 		}
 		
-	}
-	
+		else {
+			putchar(iCharacter); // Output the character as-is if it's a letter
+		}
+
+	}	
 }/* End main()*/

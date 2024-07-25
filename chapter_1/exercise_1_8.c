@@ -7,6 +7,7 @@
 
 /** REQUIRED HEADER FILES */
 #include<stdio.h>
+#include "../error_handling.h"
 
 /** MAIN PROGRAM */
 /*
@@ -14,22 +15,29 @@
  */
 
 int main(){
-	int c;
-	int cNewline = 0; 
-	int cblancks = 0;
-	int ctabs = 0;
+	
+    int iCharacter;  // Variable to hold each character read from input
+    int iNewline = 0;  // Counter for the number of newline characters ('\n')
+    int iBlanks = 0;   // Counter for the number of blank spaces (' ')
+    int iTabs = 0;     // Counter for the number of tab characters ('\t')
 
-	while((c = getchar())!=EOF){
-		if(c =='\n'){
-			cNewline++;
-		}
-		else if (c ==' '){
-			cblancks++;
-		}
-		else if(c =='\t'){
-			ctabs++;
-		}
-	}
-	printf("count of newline=%d\ncount of blancks=%d\ncount of tabs=%d",cNewline,cblancks,ctabs);
+
+    while ((iCharacter = getchar()) != EOF) {
+        if (iCharacter == '\n') {
+            iNewline++;
+        } else if (iCharacter == ' ') {
+            iBlanks++;
+        } else if (iCharacter == '\t') {
+            iTabs++;
+        } else if (iCharacter != '\n' && iCharacter != ' ' && iCharacter != '\t') {
+            handle_error(INVALID_CHARACTER_DETECTED);
+        }
+    }
+
+    printf("\nCharacter count summary:\n");
+    printf("----------------------------\n");
+    printf("Count of newline: %d\n", iNewline);
+    printf("Count of blanks : %d\n", iBlanks);
+    printf("Count of tabs   : %d\n", iTabs);
 	
 }/* End main()*/

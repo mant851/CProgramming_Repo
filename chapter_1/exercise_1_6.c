@@ -15,8 +15,8 @@
 
 int main(){
 
-	int c;
-	if (getchar()!=EOF)
+	int iCharacter; // Given input character
+	if (iCharacter = getchar()!=EOF)
 		printf("0");
 	else
 		printf("1");	

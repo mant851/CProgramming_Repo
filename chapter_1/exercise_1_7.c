@@ -14,6 +14,6 @@
  */
 
 int main(){
-	printf("%d",EOF);
+	printf("%d",EOF); // Print the value of the EOF
 	
 }/* End main()*/
