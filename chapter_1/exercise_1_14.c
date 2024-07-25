@@ -14,31 +14,34 @@
  */
 
 int main(){
-	int c;
-	int temp;
-	int nChars[26];
-	for(int i=0;i<=25;i++){
-		nChars[i]=0;
-	}
-	while((c=getchar())!=EOF){
-		if(c>=65 || c<=90){
-			nChars[c-'A']++;
+    int iChar;
+    int iTemp; /* temporary value will be store */
+    int nChars[26] = {0};  /* Array to store counts of each letter */
 
-		}
-		if(c>=97 || c<=122){
-			nChars[c-'a']++;
-		}
-		
-	}
-	for(int i=0;i<26;i++){
-		if(nChars[i]>0){
-		printf("%c\t",i+97);
-		for(int j=0;j<nChars[i];j++){
-			printf("*");
-			}
-		printf("\n");
-		}
-	}
+    for (int iIndex = 0; iIndex < 26; iIndex++) {
+        nChars[iIndex] = 0;
+    }
+
+    while ((iChar = getchar()) != EOF) {
+        if (iChar >= 'A' && iChar <= 'Z') {
+            nChars[iChar - 'A']++;
+        }
+        if (iChar >= 'a' && iChar <= 'z') {
+            nChars[iChar - 'a']++;
+        }
+    }
+
+    for (int iIndex = 0; iIndex < 26; iIndex++) {
+        if (nChars[iIndex] > 0) {
+            printf("%c\t", iIndex + 'a');
+            for (int j = 0; j < nChars[iIndex]; j++) {
+                printf("*");
+            }
+            printf("\n");
+        }
+    }
+
+    return 0;
 
 	
 }/* End main()*/

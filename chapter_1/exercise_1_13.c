@@ -15,7 +15,6 @@
 
 int main(){
 	int iCharacter; /* Input Character */
-	int iTemp; /* temporary vaiable */
 	while((iCharacter=getchar())!=EOF){
 		if(iCharacter=='\t' || iCharacter==' ' || iCharacter=='\n'){
 			putchar('\n');
