@@ -21,6 +21,13 @@ void handle_error(int error_code) {
 	case INVALID_CHARACTER_DETECTED:
 	    printf("Error %d: Invalid Character Detected\n",INVALID_CHARACTER_DETECTED);
 	    break;
+	case INVALID_CHOICE:
+	    printf("Error %d: Invalid Choice given\n",INVALID_CHOICE);
+	    break;
+	case INVALID_HEXADECIMAL:
+	    printf("Error %d: Invalid Hexadecimal value given\n",INVALID_HEXADECIMAL);
+	    break;
+
         default:
             printf("Error: Unknown error.\n");
             break;

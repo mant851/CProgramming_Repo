@@ -13,13 +13,14 @@
  */
 
 int main(){
-	int ilim = 10; //limit for get line
-	int ic; // get character from the input
-	int igetstring[ilim]; // store characters of given input. 
-	for(int i=0;i<ilim-1;++i){
-		if(ic=getchar() != '\n'){
-			if(ic != EOF){
-				igetstring[i] = ic;
+	int iLim = 10; /* limit for get line */
+	int iCharacter; /* get character from the input*/ 
+	int iGetstring[iLim]; /* store characters of given input. */
+ 
+	for(int iIndex=0;iIndex<iLim-1;++iIndex){
+		if(iCharacter=getchar() != '\n'){
+			if(iCharacter != EOF){
+				iGetstring[iIndex] = iCharacter;
 			}
 		}
 	}
