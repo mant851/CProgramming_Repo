@@ -5,84 +5,91 @@
  * Modified: 11 July 2024
 */
 
-
-/** REQUIRED HEADER FILES */
-#include<stdio.h>
-#include<string.h>
-/** MARCO DEFINATIONS */
-
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "../error_handling.h"
 
 /** FUNCTION PROTOTYPES */
-void itoa(int iInput, char sString[], int minWidth);
+void itoa(int iInput, char sString[], int iMinWidth);
 void reverse(char sString[]);
+int isValidWidth(int minWidth);
 
-/** MAIN PROGRAM */
-/*
- * main: convert iInput into character in sString with minimum field width functionality.
-*/
+int main() {
+    char sString[1000]; /* String conversion of input */
+    int iInput;         /* Input integer */
+    int iMinWidth;      /* Minimum field width
 
+    /* User input for integer value */
+    printf("Enter an integer: ");
+    if (scanf("%d", &iInput) != 1) {
+        handle_error(ERROR_INVALID_INPUT);
+        return 1;
+    }
 
-int main(){
-        char sString[1000]; // string conversion of input
-        int iInput = 123; // input integer
-	int minWidth = 6;
-        itoa(iInput,sString,minWidth);
-        printf("%s\n", sString); // print conversion of iInput into sString
-        return 0;
+    /* User input for minimum field width */
+    printf("Enter minimum field width: ");
+    if (scanf("%d", &iMinWidth) != 1 || !isValidWidth(iMinWidth)) {
+        handle_error(ERROR_INVALID_WIDTH);
+        return 1;
+    }
+
+    /* Convert integer to string with minimum field width */
+    itoa(iInput, sString, iMinWidth);
+    printf("Formatted string: '%s'\n", sString);
+
+    return 0;
 }
 
-
-/*
- * itoa: convert integer iInput into character in sString with adding minimum field width functionality.
- * Author: Manthan Nagar
- * Created: 10 July 2024
- * Modified: 10 July 2024
-*/
-
-void itoa(int iInput, char sString[], int minWidth) {
+/**
+ * itoa: Convert integer iInput into a string in sString with minimum field width functionality.
+ */
+void itoa(int iInput, char sString[], int iMinWidth) {
     int iIndex = 0;
     int iSign = iInput; // Store the sign of the number
-    int numSpaces; // Number of leading spaces needed
+    int iNumSpaces; // Number of leading spaces needed
 
-    // Handle negative numbers
+    /* Validate minWidth */
+    if (!isValidWidth(iMinWidth)) {
+        handle_error(ERROR_INVALID_WIDTH);
+        sString[0] = '\0'; // Set an empty string to indicate error
+        return;
+    }
+
+    /* Handle negative numbers */
     if (iSign < 0) {
         iInput = -iInput;
     }
 
-    // Generate the number string in reverse
+    /* Generate the number string in reverse */
     do {
         sString[iIndex++] = iInput % 10 + '0';
     } while ((iInput /= 10) > 0);
 
-    // Handle negative sign
+    /* Handle negative sign */
     if (iSign < 0) {
         sString[iIndex++] = '-';
     }
 
-    // Calculate number of spaces needed
-    numSpaces = minWidth - iIndex;
+    /* Calculate number of spaces needed */
+    iNumSpaces = iMinWidth - iIndex;
 
-    // Add leading spaces if necessary
-    while (numSpaces > 0) {
+    /* Add leading spaces if necessary */
+    while (iNumSpaces > 0) {
         sString[iIndex++] = ' ';
-        numSpaces--;
+        iNumSpaces--;
     }
 
-    // Terminate the string
+    /* Terminate the string */
     sString[iIndex] = '\0';
 
-    // Reverse the string to correct order
+    /* Reverse the string to correct order */
     reverse(sString);
 }
 
-
-/*
- * reverse: reverse a given string.
- * Author: Manthan Nagar
- * Created: 10 July 2024
- * Modified: 10 July 2024
-*/
-
+/**
+ * reverse: Reverse a given string.
+ */
 void reverse(char sString[]) {
     int iStart = 0;
     int iEnd = strlen(sString) - 1;
@@ -98,4 +105,11 @@ void reverse(char sString[]) {
         iStart++;
         iEnd--;
     }
+}
+
+/**
+ * isValidWidth: Validate the minimum field width.
+ */
+int isValidWidth(int minWidth) {
+    return (minWidth > 0);
 }
