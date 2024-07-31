@@ -9,8 +9,10 @@
 /** REQUIRED HEADER FILES */
 #include<stdio.h>
 #include<string.h>
-/** MARCO DEFINATIONS */
+#include "../error_handling.h"
 
+/** MARCO DEFINATIONS */
+#define MAX_INPUT_SIZE 256
 
 /** FUNCTION PROTOTYPES */
 double atof(char sStrings[]);
@@ -21,15 +23,21 @@ double atof(char sStrings[]);
 */
 
 
-double main(){
-        char sStrings[] = "123.45e-6"; // input string
-      	        
-        double iOutput = atof(sStrings);
-	
-	printf("The number after conversion will be %g\n",iOutput);
+double main() {
+    char sStrings[MAX_INPUT_SIZE];
+    printf("Enter a string to convert to a floating-point number (e.g., 12.3e16): ");
+    if (scanf("%s", sStrings) != 1) {
+        handle_error(ERROR_INVALID_INPUT);
+        return 1;
+    }
 
+    // Convert the string to a floating-point number
+    double iOutput = atof(sStrings);
+    
+    // Print the result
+    printf("The number after conversion is %.17g\n", iOutput);
 
-        return 0;
+    return 0;
 }
 
 
@@ -44,7 +52,14 @@ double atof(char sStrings[]){
 	
 	
 	int iIndex = 0 ;
-       	double iAns = 0;	
+       	double iAns = 0;
+	int iNegative = 0;
+
+	if (sStrings[iIndex] == '-'){
+		iIndex++;
+		iNegative = 1;
+	}
+	
 	while((sStrings[iIndex]!='e') && (sStrings[iIndex]!='.')){
 		
 		iAns= (iAns *10) + (sStrings[iIndex] - '0') ;
@@ -68,12 +83,19 @@ double atof(char sStrings[]){
 	for(iCounter=0;iCounter<iFloatpoint;iCounter++){
 		iAns = iAns/10;
 	}
-
+	iCounter = 0;
 	if(sStrings[iIndex+1] == '-')
 	{
 		iIndex = iIndex+2;
-		iCounter = sStrings[iIndex] - '0';
+
+		while(iIndex< strlen(sStrings)) {
+
+		  iCounter = iCounter*10 + sStrings[iIndex]-'0';
+		  iIndex++;
+		}
+
 		while(iCounter>0){
+
 		iAns= iAns /10 ;
 
 		iCounter--;
@@ -84,7 +106,12 @@ double atof(char sStrings[]){
 	}
 	else{
 		iIndex = iIndex +1;
-		iCounter = sStrings[iIndex]-'0';
+		while(iIndex< strlen(sStrings)) {
+
+		  iCounter = iCounter*10 + sStrings[iIndex]-'0';
+		  iIndex++;
+		}
+
 		while(iCounter>0){
 
                 iAns= iAns * 10 ;
@@ -95,7 +122,10 @@ double atof(char sStrings[]){
 
 	}
 	
+	if(iNegative == 1){
 
+		return (-1 * iAns);	
+	}
 	return iAns;	
 
 }
